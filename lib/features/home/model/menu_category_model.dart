@@ -15,8 +15,8 @@ class MenuCategory with _$MenuCategory {
 @freezed
 class CategoryListModel with _$CategoryListModel {
   factory CategoryListModel({
-    @JsonKey(name: 'idCategory') required bool id,
-    @JsonKey(name: 'strCategory') required bool name,
+    @JsonKey(name: 'idCategory') required String id,
+    @JsonKey(name: 'strCategory') required String name,
     @JsonKey(name: 'strCategoryThumb') required String imageName,
     @JsonKey(name: 'strCategoryDescription') required String description,
   }) = _CategoryListModel;

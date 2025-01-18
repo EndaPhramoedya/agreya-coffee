@@ -1,6 +1,8 @@
 import 'package:agreya_coffee/constants/constants.dart';
+import 'package:agreya_coffee/features/home/home.dart';
 import 'package:agreya_coffee/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -10,6 +12,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    /// TODO: add initial category value
+    context.read<HomeBloc>().add(const HomeEvent.getMenuList(filterCategory: 'Beef'));
+
+    super.initState();
+  }
+
   List<Widget> _appbarActions() {
     return <Widget>[
       Container(
@@ -191,31 +201,30 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildMenuList() {
-    return GridView.builder(
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        mainAxisSpacing: 8.0,
-        crossAxisSpacing: 8.0,
-      ),
-      physics: const NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      itemCount: 10,
-      itemBuilder: (BuildContext context, int index) {
-        return Card(
-          child: Column(
-            children: <Widget>[
-              Image.network('https://picsum.photos/200'),
-              const SizedBox(
-                width: 20,
-              ),
-              const Expanded(
-                child: Text(
-                  'Every city is good for travel.',
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ],
+    return BlocBuilder<HomeBloc, HomeState>(
+      buildWhen: (HomeState previous, HomeState current) => previous.menuModel != current.menuModel,
+      builder: (BuildContext context, HomeState state) {
+        final MenuModel? menuModel = state.menuModel;
+
+        if (menuModel == null || menuModel.menuList.isEmpty) {
+          return const SizedBox();
+        }
+
+        return GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            mainAxisSpacing: 8.0,
+            crossAxisSpacing: 8.0,
+            childAspectRatio: 0.6
           ),
+          physics: const NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
+          itemCount: 10,
+          itemBuilder: (BuildContext context, int index) {
+            final MenuItemModel menuItem = menuModel.menuList[index];
+
+            return MenuCard(menuItem: menuItem);
+          },
         );
       },
     );

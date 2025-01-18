@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:agreya_coffee/constants/constants.dart';
 import 'package:agreya_coffee/data/data.dart';
 import 'package:agreya_coffee/features/home/model/model.dart';
 import 'package:dio/dio.dart';
@@ -15,7 +16,7 @@ class HomeRepository {
   }) async {
     try {
       final MenuModel response = await _apiService.getMenuList(
-        baseUrl: 'www.themealdb.com/api/json/v1/1/filter.php',
+        baseUrl: ApiPaths.menuList,
         filterName: filterName,
         filterCategory: filterCategory,
       );

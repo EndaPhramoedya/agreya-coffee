@@ -12,8 +12,8 @@ abstract class ApiService {
   @GET('')
   Future<MenuModel> getMenuList({
     @Path('url') required String baseUrl,
-    @Query('s') String filterName,
-    @Query('c') String filterCategory,
+    @Query('s') String filterName = '',
+    @Query('c') String filterCategory = '',
     @ReceiveProgress() ProgressCallback? onReceiveProgress,
   });
 

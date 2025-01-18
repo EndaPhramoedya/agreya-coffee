@@ -6,19 +6,19 @@ part 'menu_model.g.dart';
 @freezed
 class MenuModel with _$MenuModel {
   factory MenuModel({
-    @JsonKey(name: 'menus') required List<MenuListModel> menuList,
+    @JsonKey(name: 'meals') @Default(<MenuItemModel>[]) List<MenuItemModel> menuList,
   }) = _MenuModel;
 
   factory MenuModel.fromJson(Map<String, dynamic> json) => _$MenuModelFromJson(json);
 }
 
 @freezed
-class MenuListModel with _$MenuListModel {
-  factory MenuListModel({
-    @JsonKey(name: 'idMeal') required bool id,
-    @JsonKey(name: 'strMeal') required bool name,
-    @JsonKey(name: 'strMealThumb') required String imageName,
-  }) = _MenuListModel;
+class MenuItemModel with _$MenuItemModel {
+  factory MenuItemModel({
+    @JsonKey(name: 'idMeal') @Default('') String id,
+    @JsonKey(name: 'strMeal') @Default('') String name,
+    @JsonKey(name: 'strMealThumb') @Default('') String imageName,
+  }) = _MenuItemModel;
 
-  factory MenuListModel.fromJson(Map<String, dynamic> json) => _$MenuListModelFromJson(json);
+  factory MenuItemModel.fromJson(Map<String, dynamic> json) => _$MenuItemModelFromJson(json);
 }
