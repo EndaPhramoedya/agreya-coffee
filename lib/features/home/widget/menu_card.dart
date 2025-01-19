@@ -1,6 +1,7 @@
 import 'package:agreya_coffee/constants/constants.dart';
 import 'package:agreya_coffee/features/home/model/model.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class MenuCard extends StatelessWidget {
   final MenuItemModel menuItem;
@@ -49,9 +50,10 @@ class MenuCard extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                const Text(
-                  'Rp35.000',
-                  style: TextStyle(fontWeight: FontWeight.w500),
+                /// TODO: should be the price, but the API doesn't have price object
+                Text(
+                  NumberFormat.simpleCurrency(locale: 'id', decimalDigits: 0).format(int.tryParse(menuItem.id) ?? '0'),
+                  style: const TextStyle(fontWeight: FontWeight.w500),
                 ),
                 OutlinedButton(
                   onPressed: () {},

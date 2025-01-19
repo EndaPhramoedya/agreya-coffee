@@ -3,6 +3,7 @@ import 'package:agreya_coffee/features/home/home.dart';
 import 'package:agreya_coffee/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sticky_headers/sticky_headers.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -14,8 +15,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   void initState() {
-    /// TODO: add initial category value
-    context.read<HomeBloc>().add(const HomeEvent.getMenuList(filterCategory: 'Beef'));
+    context.read<HomeBloc>().add(const HomeEvent.getCategoryList());
 
     super.initState();
   }
@@ -191,7 +191,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _buildHeader() {
+  Widget _buildHeaderSection() {
     return Stack(
       children: <Widget>[
         _buildAppbar(),
@@ -210,33 +210,98 @@ class _HomePageState extends State<HomePage> {
           return const SizedBox();
         }
 
-        return GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            mainAxisSpacing: 8.0,
-            crossAxisSpacing: 8.0,
-            childAspectRatio: 0.6
-          ),
-          physics: const NeverScrollableScrollPhysics(),
-          shrinkWrap: true,
-          itemCount: 10,
-          itemBuilder: (BuildContext context, int index) {
-            final MenuItemModel menuItem = menuModel.menuList[index];
+        return Padding(
+          padding: const EdgeInsets.only(top: 10),
+          child: GridView.builder(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              mainAxisSpacing: 8.0,
+              crossAxisSpacing: 8.0,
+              childAspectRatio: 0.6,
+            ),
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: 10,
+            itemBuilder: (BuildContext context, int index) {
+              final MenuItemModel menuItem = menuModel.menuList[index];
 
-            return MenuCard(menuItem: menuItem);
-          },
+              return MenuCard(menuItem: menuItem);
+            },
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildMenuSection() {
+    return BlocConsumer<HomeBloc, HomeState>(
+      listenWhen: (HomeState previous, HomeState current) => previous.category != current.category,
+      listener: (BuildContext context, HomeState state) => context.read<HomeBloc>().add(const HomeEvent.getMenuList()),
+      buildWhen: (HomeState previous, HomeState current) => previous.menuCategory != current.menuCategory,
+      builder: (BuildContext context, HomeState state) {
+        final MenuCategory? menuCategory = state.menuCategory;
+        if (menuCategory == null) {
+          return const SizedBox();
+        }
+
+        final List<CategoryItemModel> categoryList = menuCategory.categoryList;
+        return StickyHeader(
+          header: ColoredBox(
+            color: Colors.white,
+            child: Row(
+              children: <Widget>[
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.menu,
+                    color: Colors.orange,
+                  ),
+                ),
+                Flexible(
+                  child: DefaultTabController(
+                    length: categoryList.length,
+                    child: SizedBox(
+                      height: 50,
+                      child: TabBar(
+                        labelPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                        tabAlignment: TabAlignment.start,
+                        unselectedLabelColor: Colors.black,
+                        labelColor: Colors.black,
+                        isScrollable: true,
+                        indicatorSize: TabBarIndicatorSize.tab,
+                        indicatorColor: Colors.orange,
+                        dividerColor: Colors.transparent,
+                        tabs: categoryList.map((CategoryItemModel item) {
+                          return Text(item.name);
+                        }).toList(),
+                        onTap: (int index) =>
+                            context.read<HomeBloc>().add(HomeEvent.onSelectCategory(category: categoryList[index].name)),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          content: _buildMenuList(),
         );
       },
     );
   }
 
   Widget _buildContent() {
-    return SingleChildScrollView(
-      child: Column(
-        children: <Widget>[
-          _buildHeader(),
-          _buildMenuList(),
-        ],
+    return SafeArea(
+      bottom: false,
+      child: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            _buildHeaderSection(),
+            const SizedBox(
+              height: 10,
+            ),
+            _buildMenuSection(),
+          ],
+        ),
       ),
     );
   }
@@ -247,79 +312,4 @@ class _HomePageState extends State<HomePage> {
       body: _buildContent(),
     );
   }
-
-// @override
-// Widget build(BuildContext context) {
-//   return Scaffold(
-//     // appBar: _appBar(),
-//     body: CustomScrollView(
-//       slivers: <Widget>[
-//         SliverAppBar(
-//           title: const InvisibleExpandedHeader(
-//             child: Text('Agreya Coffee Duren Sawit'),
-//           ),
-//           actions: _appbarActions(),
-//           expandedHeight: 180,
-//           pinned: true,
-//           flexibleSpace: FlexibleSpaceBar(
-//
-//             background: Stack(
-//               children: <Widget>[
-//                 ClipRRect(
-//                   borderRadius: const BorderRadius.only(
-//                     bottomLeft: Radius.circular(15),
-//                     bottomRight: Radius.circular(15),
-//                   ),
-//                   child: Container(
-//                     decoration: BoxDecoration(
-//                       image: DecorationImage(
-//                         image: AssetImage(
-//                           ImageHelper.getSourceByPng(PngAssetNames.banner),
-//                         ),
-//                         fit: BoxFit.fill,
-//                       ),
-//                     ),
-//                   ),
-//                 ),
-//                 Positioned(
-//                   bottom: -50,
-//                   child: SizedBox(
-//                     height: 100,
-//                     child: Card(
-//                       color: Colors.red,
-//                       child: Row(
-//                         children: <Widget>[
-//                           const Column(
-//                             children: <Widget>[
-//                               Text('Agreya Coffee Duren Sawit'),
-//                               Text('Buka hari ini, 00:00-23:59'),
-//                             ],
-//                           ),
-//                           IconButton(
-//                             onPressed: () {},
-//                             icon: const Icon(Icons.chevron_right),
-//                           ),
-//                         ],
-//                       ),
-//                     ),
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           ),
-//         ),
-//         SliverList(
-//           delegate: SliverChildBuilderDelegate(
-//             childCount: 20,
-//             (BuildContext context, int index) {
-//               return ListTile(
-//                 title: Text('Index ${index + 1}'),
-//               );
-//             },
-//           ),
-//         ),
-//       ],
-//     ),
-//   );
-// }
 }

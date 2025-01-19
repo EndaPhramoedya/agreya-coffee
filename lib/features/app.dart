@@ -63,12 +63,7 @@ class _AppState extends State<App> {
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.grey.shade50,
       ),
-
       routerConfig: _router,
-      builder: (BuildContext context, Widget? child) {
-        _setupDevicePropertiesConstants(context);
-        return child!;
-      },
     );
   }
 }

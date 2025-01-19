@@ -27,4 +27,17 @@ class HomeRepository {
       rethrow;
     }
   }
+
+  Future<MenuCategory>? getCategoryList() async {
+    try {
+      final MenuCategory response = await _apiService.getCategoryList(
+        baseUrl: ApiPaths.categoryList,
+      );
+
+      return response;
+    } on DioException catch (e) {
+      log(e.toString(), name: 'getCategoryList');
+      rethrow;
+    }
+  }
 }
