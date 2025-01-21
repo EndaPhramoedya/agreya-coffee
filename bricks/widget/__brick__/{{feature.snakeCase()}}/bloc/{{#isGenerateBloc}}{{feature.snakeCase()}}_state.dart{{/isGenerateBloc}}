@@ -1,0 +1,8 @@
+part of '{{feature.snakeCase()}}_bloc.dart';
+
+@freezed
+class {{feature.pascalCase()}}State with _${{feature.pascalCase()}}State {
+  const factory {{feature.pascalCase()}}State(
+    /// TODO: initialize Bloc state variables here
+  ) = _{{feature.pascalCase()}}State;
+}

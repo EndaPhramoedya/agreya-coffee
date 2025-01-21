@@ -41,3 +41,8 @@ vars:
     description: Make a stateless widget
     default: true
     prompt: is stateless?
+  isGenerateBloc:
+    type: boolean
+    description: Generate Bloc for initial page
+    default: false
+    prompt: generate bloc for this page?

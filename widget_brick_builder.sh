@@ -1,1 +1,1 @@
-mason make widget -o lib/features
+mason make widget -o lib/features --on-conflict prompt
