@@ -1,8 +1,10 @@
 import 'package:agreya_coffee/constants/constants.dart';
 import 'package:agreya_coffee/features/home/home.dart';
+import 'package:agreya_coffee/features/menu_detail/page/page.dart';
 import 'package:agreya_coffee/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sticky_headers/sticky_headers.dart';
 
 class HomePage extends StatefulWidget {
@@ -225,7 +227,15 @@ class _HomePageState extends State<HomePage> {
             itemBuilder: (BuildContext context, int index) {
               final MenuItemModel menuItem = menuModel.menuList[index];
 
-              return MenuCard(menuItem: menuItem);
+              return MenuCard(
+                menuItem: menuItem,
+                onTap: () => context.push(
+                  RoutePaths.menuDetail,
+                  extra: MenuDetailArguments(
+                    menuItem: menuItem,
+                  ),
+                ),
+              );
             },
           ),
         );
@@ -274,8 +284,9 @@ class _HomePageState extends State<HomePage> {
                         tabs: categoryList.map((CategoryItemModel item) {
                           return Text(item.name);
                         }).toList(),
-                        onTap: (int index) =>
-                            context.read<HomeBloc>().add(HomeEvent.onSelectCategory(category: categoryList[index].name)),
+                        onTap: (int index) => context
+                            .read<HomeBloc>()
+                            .add(HomeEvent.onSelectCategory(category: categoryList[index].name)),
                       ),
                     ),
                   ),

@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 late Size kDeviceSize;
 late double kDeviceLogicalWidth;
 late double kDeviceLogicalHeight;
+late double kTopPadding;
+late double kBottomPadding;
 
 // Size in physical pixels
 late double kDevicePhysicalWidth;
