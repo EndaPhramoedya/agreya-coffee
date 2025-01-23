@@ -225,11 +225,10 @@ class _MenuDetailPageState extends State<MenuDetailPage> {
 
   Widget _buildContent() {
     return SafeArea(
-      child: Container(
-        padding: const EdgeInsets.only(bottom: 150),
-        height: kDeviceLogicalHeight - kTopPadding - kBottomPadding,
-        child: SingleChildScrollView(
-          physics: const ClampingScrollPhysics(),
+      child: SingleChildScrollView(
+        physics: const ClampingScrollPhysics(),
+        child: Padding(
+          padding: const EdgeInsets.only(bottom: 10),
           child: Stack(
             children: <Widget>[
               _buildHeaderSection(),
