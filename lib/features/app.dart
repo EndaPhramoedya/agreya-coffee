@@ -52,7 +52,12 @@ class _AppState extends State<App> {
     ],
   );
 
-  void _setupDevicePropertiesConstants(BuildContext context) {
+  Future<void> _setupDevicePropertiesConstants(BuildContext context) async {
+    final double shortestSide = MediaQuery.of(context).size.shortestSide;
+    // Determine if we should use mobile layout or not, 600 here is
+    // a common breakpoint for a typical 7-inch tablet.
+    isTablet = shortestSide > 600;
+
     final MediaQueryData mediaQuery = MediaQuery.of(context);
     kDeviceSize = mediaQuery.size;
     kDeviceLogicalWidth = kDeviceSize.width;
@@ -68,7 +73,7 @@ class _AppState extends State<App> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      _setupDevicePropertiesConstants(context);
+      await _setupDevicePropertiesConstants(context);
     });
 
     super.initState();

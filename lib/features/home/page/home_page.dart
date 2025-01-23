@@ -57,7 +57,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildAppbar() {
     return SizedBox(
-      height: 230,
+      height: isTablet ? 300 : 230,
       child: AppBar(
         flexibleSpace: ClipRRect(
           borderRadius: const BorderRadius.only(
@@ -87,7 +87,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget _headerCards() {
     return Padding(
-      padding: const EdgeInsets.only(top: 200, left: 10, right: 10),
+      padding: EdgeInsets.only(top: isTablet ? 270 : 200, left: 10, right: 10),
       child: Column(
         children: <Widget>[
           SizedBox(
@@ -215,8 +215,8 @@ class _HomePageState extends State<HomePage> {
         return Padding(
           padding: const EdgeInsets.only(top: 10),
           child: GridView.builder(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: isTablet ? 4 : 2,
               mainAxisSpacing: 8.0,
               crossAxisSpacing: 8.0,
               childAspectRatio: 0.6,

@@ -14,3 +14,6 @@ late double kDevicePhysicalWidth;
 late double kDevicePhysicalHeight;
 
 late double kDevicePixelRatio;
+
+// To check if device is tablet size or phone size
+bool isTablet = false;

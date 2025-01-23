@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:agreya_coffee/components/custom_button.dart';
 import 'package:agreya_coffee/constants/constants.dart';
 import 'package:agreya_coffee/features/home/model/model.dart';
@@ -244,7 +246,7 @@ class _MenuDetailPageState extends State<MenuDetailPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: _buildContent(),
-      bottomSheet: _buildBottomSection(),
+      bottomNavigationBar: _buildBottomSection(),
     );
   }
 }
