@@ -57,7 +57,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildAppbar() {
     return SizedBox(
-      height: isTablet ? 300 : 230,
+      height: isTablet ? 300 : 200,
       child: AppBar(
         flexibleSpace: ClipRRect(
           borderRadius: const BorderRadius.only(
@@ -87,7 +87,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget _headerCards() {
     return Padding(
-      padding: EdgeInsets.only(top: isTablet ? 270 : 200, left: 10, right: 10),
+      padding: EdgeInsets.only(top: isTablet ? 270 : 170, left: 10, right: 10),
       child: Column(
         children: <Widget>[
           SizedBox(
@@ -95,7 +95,7 @@ class _HomePageState extends State<HomePage> {
             child: Card(
               elevation: 0,
               shape: RoundedRectangleBorder(
-                side: const BorderSide(color: Colors.grey, width: 0.4),
+                side: const BorderSide(color: AppColors.kGrey7F8FA4, width: 0.4),
                 borderRadius: BorderRadius.circular(15),
               ),
               color: Colors.white,
@@ -104,24 +104,18 @@ class _HomePageState extends State<HomePage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    const Column(
+                    Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
                           'Agreya Coffee Duren Sawit',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                          ),
+                          style: AppTextStyle.black3C3D3E_500_16,
                         ),
                         SizedBox(height: 8),
                         Text(
                           'Buka hari ini, 00:00-23:59',
-                          style: TextStyle(
-                            color: Colors.grey,
-                            fontWeight: FontWeight.w500,
-                          ),
+                          style: AppTextStyle.grey6B7380_400_12,
                         ),
                       ],
                     ),
@@ -129,7 +123,7 @@ class _HomePageState extends State<HomePage> {
                       onPressed: () {},
                       icon: const Icon(
                         Icons.chevron_right,
-                        color: Colors.grey,
+                        color: AppColors.kGrey7F8FA4,
                         size: 30,
                       ),
                       visualDensity: VisualDensity.compact,
@@ -147,7 +141,7 @@ class _HomePageState extends State<HomePage> {
             child: Card(
               elevation: 0,
               shape: RoundedRectangleBorder(
-                side: const BorderSide(color: Colors.grey, width: 0.4),
+                side: const BorderSide(color: AppColors.kGrey7F8FA4, width: 0.4),
                 borderRadius: BorderRadius.circular(15),
               ),
               color: Colors.white,
@@ -156,31 +150,25 @@ class _HomePageState extends State<HomePage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    const Text(
+                    Text(
                       'Tipe Pemesanan',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                      ),
+                      style: AppTextStyle.black3C3D3E_500_14,
                     ),
                     OutlinedButton(
                       onPressed: () {},
                       style: OutlinedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(horizontal: 8),
                         side: const BorderSide(
-                          color: Colors.grey,
+                          color: AppColors.kGrey7F8FA4,
                           width: 0.3,
                         ),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
                         ),
                       ),
-                      child: const Text(
+                      child: Text(
                         'Makan di tempat',
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500,
-                        ),
+                        style: AppTextStyle.black3C3D3E_500_12,
                       ),
                     ),
                   ],
@@ -264,7 +252,7 @@ class _HomePageState extends State<HomePage> {
                   onPressed: () {},
                   icon: const Icon(
                     Icons.menu,
-                    color: Colors.orange,
+                    color: AppColors.kOrangeF5A623,
                   ),
                 ),
                 Flexible(
@@ -275,11 +263,11 @@ class _HomePageState extends State<HomePage> {
                       child: TabBar(
                         labelPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                         tabAlignment: TabAlignment.start,
-                        unselectedLabelColor: Colors.black,
-                        labelColor: Colors.black,
+                        unselectedLabelColor: AppColors.kBlack3C3D3E,
+                        labelColor: AppColors.kBlack3C3D3E,
                         isScrollable: true,
                         indicatorSize: TabBarIndicatorSize.tab,
-                        indicatorColor: Colors.orange,
+                        indicatorColor: AppColors.kOrangeF5A623,
                         dividerColor: Colors.transparent,
                         tabs: categoryList.map((CategoryItemModel item) {
                           return Text(item.name);
@@ -307,9 +295,7 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           children: <Widget>[
             _buildHeaderSection(),
-            const SizedBox(
-              height: 10,
-            ),
+            const SizedBox(height: 10),
             _buildMenuSection(),
           ],
         ),

@@ -122,6 +122,10 @@ class AppTextStyle {
       const TextStyle(fontWeight: FontWeight.w400, fontSize: 10, color: AppColors.kBlack3C3D3E);
   static TextStyle black3C3D3E_400_14 =
       const TextStyle(fontWeight: FontWeight.w400, fontSize: 14, color: AppColors.kBlack3C3D3E);
+  static TextStyle black3C3D3E_500_12 =
+      const TextStyle(fontWeight: FontWeight.w500, fontSize: 12, color: AppColors.kBlack3C3D3E);
+  static TextStyle black3C3D3E_500_14 =
+      const TextStyle(fontWeight: FontWeight.w500, fontSize: 14, color: AppColors.kBlack3C3D3E);
   static TextStyle black3C3D3E_500_16 =
       const TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: AppColors.kBlack3C3D3E);
   static TextStyle black3C3D3E_700_14 =

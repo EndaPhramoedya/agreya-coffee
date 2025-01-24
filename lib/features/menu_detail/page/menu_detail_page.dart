@@ -115,9 +115,9 @@ class _MenuDetailPageState extends State<MenuDetailPage> {
                 ],
               ),
             ),
-            Divider(
+            const Divider(
               thickness: 5,
-              color: Colors.grey.shade100,
+              color: AppColors.kGreyF6F6F6,
             ),
             Padding(
               padding: const EdgeInsets.all(10),
@@ -139,11 +139,11 @@ class _MenuDetailPageState extends State<MenuDetailPage> {
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0),
-                        borderSide: BorderSide(width: 0.3, color: Colors.grey.shade500),
+                        borderSide: const BorderSide(width: 0.3, color: AppColors.kGrey7F8FA4),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0),
-                        borderSide: BorderSide(width: 0.3, color: Colors.grey.shade500),
+                        borderSide: const BorderSide(width: 0.3, color: AppColors.kGrey7F8FA4),
                       ),
                       hintStyle: AppTextStyle.grey676768_400_14,
                       hintText: 'Contoh: sedikit gula',
@@ -165,14 +165,19 @@ class _MenuDetailPageState extends State<MenuDetailPage> {
       height: 150,
       padding: const EdgeInsets.all(10),
       width: kDeviceLogicalWidth,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Colors.white,
-        borderRadius: const BorderRadius.only(
+        borderRadius: BorderRadius.only(
           topLeft: Radius.circular(15),
           topRight: Radius.circular(15),
         ),
         boxShadow: <BoxShadow>[
-          BoxShadow(color: Colors.grey.shade200, blurRadius: 10, spreadRadius: 2, offset: const Offset(0, -5)),
+          BoxShadow(
+            color: AppColors.kGreyD5DFE7,
+            blurRadius: 10,
+            spreadRadius: 2,
+            offset: Offset(0, -5),
+          ),
         ],
       ),
       child: Column(
@@ -194,6 +199,7 @@ class _MenuDetailPageState extends State<MenuDetailPage> {
                           _menuDetailBloc.add(const MenuDetailEvent.onDecreaseQuantity());
                         },
                         icon: const Icon(Icons.remove_circle_outline),
+                        visualDensity: VisualDensity.compact,
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -202,6 +208,7 @@ class _MenuDetailPageState extends State<MenuDetailPage> {
                       IconButton(
                         onPressed: () => _menuDetailBloc.add(const MenuDetailEvent.onIncreaseQuantity()),
                         icon: const Icon(Icons.add_circle_outline),
+                        visualDensity: VisualDensity.compact,
                       ),
                     ],
                   );

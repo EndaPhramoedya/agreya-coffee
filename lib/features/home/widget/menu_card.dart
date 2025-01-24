@@ -36,7 +36,7 @@ class MenuCard extends StatelessWidget {
                   Flexible(
                     child: Text(
                       menuItem.name,
-                      style: const TextStyle(fontWeight: FontWeight.w500),
+                      style: AppTextStyle.black3C3D3E_500_14,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -49,14 +49,14 @@ class MenuCard extends StatelessWidget {
                   /// TODO: should be the price, but the API doesn't have price object
                   Text(
                     NumberFormat.simpleCurrency(locale: 'id', decimalDigits: 0).format(int.tryParse(menuItem.id) ?? '0'),
-                    style: const TextStyle(fontWeight: FontWeight.w500),
+                    style: AppTextStyle.black3C3D3E_500_14,
                   ),
                   OutlinedButton(
                     onPressed: () {},
                     style: OutlinedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                       side: const BorderSide(
-                        color: Colors.orange,
+                        color: AppColors.kOrangeF5A623,
                         width: 0.5,
                       ),
                       shape: RoundedRectangleBorder(
@@ -66,13 +66,9 @@ class MenuCard extends StatelessWidget {
                     ),
                     child: SizedBox(
                       width: kDeviceLogicalWidth,
-                      child: const Text(
+                      child: Text(
                         'Tambah',
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.orange,
-                          fontWeight: FontWeight.w500,
-                        ),
+                        style: AppTextStyle.orangeF5A623_400_12,
                         textAlign: TextAlign.center,
                       ),
                     ),
