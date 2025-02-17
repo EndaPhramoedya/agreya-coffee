@@ -96,6 +96,7 @@ class _MenuDetailPageState extends State<MenuDetailPage> {
             Padding(
               padding: const EdgeInsets.all(10),
               child: Column(
+                spacing: 10,
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -103,14 +104,12 @@ class _MenuDetailPageState extends State<MenuDetailPage> {
                     widget.arguments.menuItem.name,
                     style: AppTextStyle.black3C3D3E_700_20,
                   ),
-                  const SizedBox(height: 10),
                   Text(
                     FormatHelper.currencyStringFormat(
                       text: widget.arguments.menuItem.id,
                     ),
                     style: AppTextStyle.black3C3D3E_700_14,
                   ),
-                  const SizedBox(height: 10),
                   Flexible(child: Text(lorem(paragraphs: 1, words: 20))),
                 ],
               ),
@@ -122,18 +121,23 @@ class _MenuDetailPageState extends State<MenuDetailPage> {
             Padding(
               padding: const EdgeInsets.all(10),
               child: Column(
+                spacing: 10,
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text(
-                    'Catatan',
-                    style: AppTextStyle.black3C3D3E_700_14,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        'Catatan',
+                        style: AppTextStyle.black3C3D3E_700_14,
+                      ),
+                      Text(
+                        'Opsional',
+                        style: AppTextStyle.black3C3D3E_400_14,
+                      ),
+                    ],
                   ),
-                  Text(
-                    'Opsional',
-                    style: AppTextStyle.black3C3D3E_400_14,
-                  ),
-                  const SizedBox(height: 10),
                   TextFormField(
                     controller: _noteController,
                     decoration: InputDecoration(
@@ -181,6 +185,7 @@ class _MenuDetailPageState extends State<MenuDetailPage> {
         ],
       ),
       child: Column(
+        spacing: 10,
         children: <Widget>[
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -215,9 +220,6 @@ class _MenuDetailPageState extends State<MenuDetailPage> {
                 },
               ),
             ],
-          ),
-          const SizedBox(
-            height: 10,
           ),
           BlocBuilder<MenuDetailBloc, MenuDetailState>(
             buildWhen: (MenuDetailState previous, MenuDetailState current) => previous.quantity != current.quantity,

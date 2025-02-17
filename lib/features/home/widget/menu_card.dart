@@ -21,6 +21,7 @@ class MenuCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Column(
+                spacing: 10,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
@@ -29,9 +30,6 @@ class MenuCard extends StatelessWidget {
                     child: Image.network(
                       menuItem.imageName,
                     ),
-                  ),
-                  const SizedBox(
-                    height: 10,
                   ),
                   Flexible(
                     child: Text(

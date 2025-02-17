@@ -89,6 +89,7 @@ class _HomePageState extends State<HomePage> {
     return Padding(
       padding: EdgeInsets.only(top: isTablet ? 270 : 170, left: 10, right: 10),
       child: Column(
+        spacing: 10,
         children: <Widget>[
           SizedBox(
             height: 90,
@@ -105,6 +106,7 @@ class _HomePageState extends State<HomePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Column(
+                      spacing: 8,
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
@@ -112,7 +114,6 @@ class _HomePageState extends State<HomePage> {
                           'Agreya Coffee Duren Sawit',
                           style: AppTextStyle.black3C3D3E_500_16,
                         ),
-                        SizedBox(height: 8),
                         Text(
                           'Buka hari ini, 00:00-23:59',
                           style: AppTextStyle.grey6B7380_400_12,
@@ -132,9 +133,6 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-          ),
-          const SizedBox(
-            height: 10,
           ),
           SizedBox(
             height: 70,
@@ -293,9 +291,9 @@ class _HomePageState extends State<HomePage> {
       bottom: false,
       child: SingleChildScrollView(
         child: Column(
+          spacing: 10,
           children: <Widget>[
             _buildHeaderSection(),
-            const SizedBox(height: 10),
             _buildMenuSection(),
           ],
         ),
